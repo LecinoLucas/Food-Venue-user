@@ -1,0 +1,33 @@
+.logo-container {
+  padding: 1rem;
+}
+
+@media (max-width: 720px) {
+  #main {
+    display: grid !important;
+    grid-template-columns: 1fr;
+  }
+  #itemContainer{
+    justify-content: center;
+  }
+  #leftItems{
+    display: none !important;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  #registerMobile{
+    display: block;
+  }
+  #loginForm{
+    padding: 35px;
+  }
+}
+
+@media (max-width: 1080px) {
+
+  #buttonRegister {
+    width: 100% !important;
+  }
+
+}

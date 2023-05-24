@@ -1,0 +1,29 @@
+.logo-container {
+padding: 1rem;
+}
+
+@media (max-height: 950px) {
+    #main {
+    display: grid !important;
+    }
+    #itemContainer{
+    justify-content: center;
+    }
+    .grid {
+    grid-template-columns: 2fr;
+    }
+    #registerForm{
+    padding: 10px !important;
+    }
+    #logo{
+        width: 40% !important;
+        margin-top: -10px;
+    }
+    #title{
+        font-size: 1.5rem;
+    }
+    #subtitle{
+        margin-top: -10px;
+        font-size: 1.3rem;
+    }
+}
