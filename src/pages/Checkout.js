@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Toast from '../components/Toast';
 import { CartContext } from '../context/CardContext';
+import { PedidoContext } from '../context/PedidoContext';
 import { UserContext } from '../context/UserContext';
 import useAxiosInstance from '../utils/axiosInstance';
 
@@ -13,6 +14,7 @@ const Checkout = () => {
     const [toastMessage, setToastMessage] = useState('');
     const [toastType, setToastType] = useState('error');
     const [toastTitle, setToastTitle] = useState('');
+    const { setPedido } = useContext(PedidoContext);
     const [paymentMethod, setPaymentMethod] = useState('card');
     const [cardInfo, setCardInfo] = useState({
         cardNumber: '',
@@ -68,6 +70,7 @@ const Checkout = () => {
         };
         try {
             const response = await axiosInstance.post('/api/pedidos/new', payload);
+            setPedido(response.data)
             clearCart();
             setToastMessage(
                 "Te informaremos quando o restaurante aceitar seu pedido"

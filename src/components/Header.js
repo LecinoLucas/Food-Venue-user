@@ -14,7 +14,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="bg-primary py-4 shadow-md fixed w-full z-50 top-0">
+        <header className="bg-primary py-4 p-2 shadow-md fixed w-full z-50 top-0">
             <nav className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-4">
                     <NavLink

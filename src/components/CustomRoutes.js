@@ -6,6 +6,7 @@ import Checkout from '../pages/Checkout';
 import EditarPerfil from '../pages/EditarPerfil';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
+import PedidoTracker from '../pages/PedidoTracker';
 import RestauranteDetail from '../pages/RestauranteDetail';
 import Register from '../pages/Singup';
 import Header from './Header';
@@ -44,6 +45,7 @@ const CustomRoutes = () => {
                 <PrivateRoute path="/carrinho" component={Carrinho} />
                 <PrivateRoute path="/editar-perfil" component={EditarPerfil} />
                 <PrivateRoute path="/checkout" component={Checkout} />
+                <PrivateRoute path="/status-pedido" component={PedidoTracker} />
             </Switch>
             {isAuthenticated && cartItems.length > 0 &&
                 location.pathname !== '/carrinho' &&
