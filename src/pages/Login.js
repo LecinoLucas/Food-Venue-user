@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import CustomButton from '../components/CustomButton';
 import Input from '../components/Input';
 import Toast from '../components/Toast';
 import { useLoading } from '../context/LoadingContexts';
+import { UserContext } from '../context/UserContext';
 import foodVenueLogo from '../images/foodVenueLogo.jpg';
 import loginImage from '../images/loginImage.jpg';
 import useAxiosInstance from '../utils/axiosInstance';
@@ -17,6 +18,7 @@ const Login = () => {
     const [toastVisible, setToastVisible] = useState(false);
     const [toastRegister, setToastRegister] = useState(false);
     const { isLoading } = useLoading();
+    const { updateUser } = useContext(UserContext);
     const history = useHistory();
     const axiosInstance = useAxiosInstance()
 
@@ -31,16 +33,24 @@ const Login = () => {
             setPasswordError(true);
             setToastVisible(true);
         }
-        axiosInstance.post('/api/auth/signin', { email, senha: password })
+        axiosInstance.post('/api/auth/signin', { email, senha: password, clientType: "DELIVERY" })
             .then((response) => {
                 localStorage.setItem('token', response.data.token);
-                axiosInstance.get('/api/restaurantes/get').then((resp) => {
+                axiosInstance.get('/api/usuarios/get').then((resp) => {
+                    const user = {
+                        email: resp.data?.email,
+                        endereco: resp.data?.endereco,
+                        id: resp.data?.id,
+                        telefone: resp.data?.telefone,
+                    }
+                    updateUser(user)
+                    history.push('/home');
                 }).catch(() => {
                     setEmailError(true);
                     setPasswordError(true);
                     setToastVisible(true);
                 })
-                history.push('/pedidos');
+
             })
             .catch(() => {
                 setEmailError(true);

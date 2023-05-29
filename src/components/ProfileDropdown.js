@@ -1,14 +1,17 @@
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
-const ProfileDropdown = ({ loggout, userName }) => {
+const ProfileDropdown = ({ userName }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
+    const history = useHistory();
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     }
-
+    const loggout = () => {
+        localStorage.removeItem('token');
+        history.push('/');
+    }
     return (
         <div className="relative">
             <AccountCircle
@@ -20,19 +23,25 @@ const ProfileDropdown = ({ loggout, userName }) => {
             {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
                     <NavLink
-                        to="/perfil"
+                        to="/editar-perfil"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         onClick={toggleDropdown}
                     >
                         Editar Perfil
                     </NavLink>
-                    <a
-                        href="#logout"
+                    <NavLink
+                        to="/editar-perfil"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        onClick={loggout}
+                        onClick={toggleDropdown}
+                    >
+                        Historico de pedidos
+                    </NavLink>
+                    <div
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => loggout()}
                     >
                         Sair
-                    </a>
+                    </div>
                 </div>
             )}
         </div>

@@ -1,38 +1,33 @@
+//Header.js
 import React, { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import CartIcon from './HeaderCart'; // Importe o CartIcon aqui
+import { NavLink } from 'react-router-dom';
+import CartIcon from './HeaderCart';
 import ProfileDropdown from './ProfileDropdown';
 
 const Header = () => {
-    const history = useHistory();
-    const [nome, setNome] = useState('');
+    const [nome] = useState('');
     const [cartItems, setCartItems] = useState(0);
 
-    const loggout = () => {
-        localStorage.removeItem('token');
-        history.push('/');
-    }
 
     useEffect(() => {
-        setCartItems(13)
-    }, [])
+        setCartItems(0);
+    }, []);
 
     return (
-        <header className="bg-primary py-4">
+        <header className="bg-primary py-4 shadow-md fixed w-full z-50 top-0">
             <nav className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-4">
                     <NavLink
                         to="/"
-                        className="text-white font-semibold text-xl"
+                        className="text-white font-semibold text-2xl tracking-wide"
                         activeClassName="font-bold"
                     >
                         Food Venue
                     </NavLink>
-
                 </div>
                 <div className="flex items-center">
-                    <CartIcon cartItems={cartItems} />  {/* Adicione o CartIcon aqui */}
-                    <ProfileDropdown loggout={loggout} restaurantName={nome} />
+                    <CartIcon cartItems={cartItems} />
+                    <ProfileDropdown restaurantName={nome} />
                 </div>
             </nav>
         </header>
