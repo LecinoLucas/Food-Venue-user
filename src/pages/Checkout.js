@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Toast from '../components/Toast';
 import { CartContext } from '../context/CardContext';
 import { PedidoContext } from '../context/PedidoContext';
@@ -15,6 +16,7 @@ const Checkout = () => {
     const [toastType, setToastType] = useState('error');
     const [toastTitle, setToastTitle] = useState('');
     const { setPedido } = useContext(PedidoContext);
+    const history = useHistory();
     const [paymentMethod, setPaymentMethod] = useState('card');
     const [cardInfo, setCardInfo] = useState({
         cardNumber: '',
@@ -78,7 +80,7 @@ const Checkout = () => {
             setToastType('success');
             setToastTitle('Compra feita com sucesso!');
             setToastVisible(true);
-            console.log(response.data);
+            history.push('/status-pedido')
         } catch (error) {
             setToastMessage(
                 "Houve um erro ao fechar seu pedido, revise seus dados ou tente novamente mais tarde"

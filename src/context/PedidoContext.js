@@ -9,8 +9,21 @@ export const PedidoProvider = ({ children }) => {
         localStorage.setItem('pedido', JSON.stringify(pedido));
     }, [pedido]);
 
+    const hasPedido = () => {
+        const storedPedido = JSON.parse(localStorage.getItem('pedido'));
+        if (storedPedido && (storedPedido.status === 'entregue' || storedPedido.status === 'cancelado')) {
+            localStorage.removeItem('pedido');
+            setPedido(null);
+            return false;
+        }
+        return storedPedido != null;
+    };
+    const removePedido = () => {
+        localStorage.removeItem('pedido');
+        setPedido(null);
+    };
     return (
-        <PedidoContext.Provider value={{ pedido, setPedido }}>
+        <PedidoContext.Provider value={{ pedido, setPedido, hasPedido, removePedido }}>
             {children}
         </PedidoContext.Provider>
     );
