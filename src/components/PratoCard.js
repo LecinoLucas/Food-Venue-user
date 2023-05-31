@@ -7,7 +7,7 @@ const PratoCard = ({ prato }) => {
     const imageUrl = base64ToImageUrl(prato.imagemBytes);
 
     return (
-        <div className="w-full h-auto rounded-lg overflow-hidden shadow-md bg-app transform transition-transform hover:scale-105 hover:shadow-lg cursor-pointer flex flex-col">
+        <div className="w-full p-12  h-auto rounded-lg overflow-hidden shadow-md bg-app transform transition-transform hover:scale-105 hover:shadow-lg cursor-pointer flex flex-col">
             <div className="w-full h-40 overflow-hidden relative">
                 <img
                     className="object-cover h-full w-full"

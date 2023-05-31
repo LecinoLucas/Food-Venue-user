@@ -138,7 +138,6 @@ const Login = () => {
                         >
                             Login
                         </CustomButton>
-                        <p className='mt-2 text-secondary block mb-1 font-semibold'> <button className='hover:text-blue-700 focus:outline-none'> Esqueceu sua senha?</button></p>
                         <div id="registerMobile" className='mt-6 hidden'>
                             <p className="text-secondary font-bold">Ainda não nos conhece? <br />Expanda seu negócio com Food Venue!</p>
                             <button

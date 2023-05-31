@@ -12,7 +12,7 @@ const RestauranteCard = ({ restaurante }) => {
     }
 
     return (
-        <div className="p-24 overflow-hidden">
+        <div className="overflow-hidden">
             <div onClick={() => redirectToRestaurantPage()} className="w-full h-auto rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform hover:scale-105 bg-card">
                 <div className="w-full h-40 overflow-hidden relative">
                     <img
